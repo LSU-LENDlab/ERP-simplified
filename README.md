@@ -13,6 +13,8 @@ To begin working with ERP-simplified:
 
 Note: MARA, an EEGLAB plugin is required.
 
+**_Citations_**
+
 Delorme A & Makeig S (2004) EEGLAB: an open-source toolbox for analysis of single-trial EEG dynamics, Journal of Neuroscience Methods 134:9-21.
 
 Lopez-Calderon, J., & Luck, S. J. (2014). ERPLAB: An open-source toolbox for the analysis of event-related potentials. Frontiers in human neuroscience, 8, 213.
