@@ -49,7 +49,7 @@ accessible as it is run through each step of this process.
 % Directories
 % Type in the locations of these directories within the ''(quotes)
 rawdir = ' '; % The 'rawdir' is where MATLAB will pull raw EEG data from
-workdir = ' '; % The 'workdir' is an active directory that MATLAB will send all working data to
+workdir = '/Users/lendlab/Desktop/testing/workdir'; % The 'workdir' is an active directory that MATLAB will send all working data to
 txtdir = ' '; % 'txtdir' is for textfiles and binlists
 erpdir = ' '; % The 'erpdir' is where ERPs will be sent
 
@@ -65,11 +65,11 @@ epoch_end = 800.00; % can be changed as needed
 
 %% Step 3: Establish subject list
 
-[d,s,r] = xlsread (' '); % Type the name of the .xlsx file within the ''(quotes). Note: it must be in the current directory.
+[d,s,r] = xlsread (['/Users/lendlab/Desktop/testing/subjects.xlsx']); % Type the name of the .xlsx file within the ''(quotes). Note: it must be in the current directory.
 subjects = r;
 numsubjects = (length(s));
 
-% Subjects to run
+% Subjects to runx
 subject_start = 1; % subject in position 'x' in subjects variable
 subject_end = 1; % subject in position 'x' in subjects variable
 
