@@ -74,7 +74,7 @@ for s = subject_start : subject_end
    [EEG, EEG.reject.indelec] = pop_rejchan(EEG,'elec',[1:EEG.nbchan],'threshold',5,'norm', 'on');
      
    % interpolate bad electrodes
-    EEG = eeg_interp(EEG,EEG.reject.indelec);
+    EEG = eeg_interp(EEG,EEG2.reject.indelec);
    
    % create new set
    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_time_fl_rr_interp'],'gui','off');
