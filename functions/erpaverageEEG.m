@@ -37,4 +37,8 @@ for s = subject_start : subject_end
     ERP = pop_averager( ALLEEG , 'Criterion', 'good', 'DSindex',1, 'ExcludeBoundary', 'on', 'SEM', 'on' );
     ERP = pop_savemyerp(ERP, 'erpname', subject, 'filename', [subject '.erp'], 'filepath', erpdir, 'Warning', 'on'); 
 
+    % filter ERPs
+    ERP = pop_loaderp( 'filename', [subject '.erp'], 'filepath', [erpdir filesep] );
+    ERP = pop_filterp( ERP,  [] , 'Cutoff',  20, 'Design', 'butter', 'Filter', 'lowpass', 'Order',  2 );
+    ERP = pop_savemyerp(ERP, 'erpname', [subject 'filt'], 'filename', [subject '_filt.erp'], 'filepath', [erpdir filesep]);
 end
