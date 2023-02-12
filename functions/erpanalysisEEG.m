@@ -37,14 +37,13 @@ for s = subject_start : subject_end
     EEG = pop_loadset([subject '_ICA_clean.set'],workdir);
     
     % create eventlist 
-    EEG  = pop_creabasiceventlist( EEG , 'AlphanumericCleaning', 'on', 'BoundaryNumeric', { -99 }, 'BoundaryString', { 'boundary' }, 'Eventlist', [txtdir [subject '.txt']] ); 
+    EEG  = pop_creabasiceventlist( EEG , 'AlphanumericCleaning', 'on', 'BoundaryNumeric', { -99 }, 'BoundaryString', { 'boundary' }, 'Eventlist', [txtdir filesep subject '.txt'] ); 
     EEG = eeg_checkset( EEG );
     [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'gui','off'); 
         
     % apply binlister
-    EEG  = pop_binlister( EEG , 'BDF', [txtdir filesep 'binlist.txt'], 'ExportEL', ...
-        [txtdir [subject '_binlist.txt']],'ImportEL', [txtdir [subject '.txt']], ...
-        'IndexEL',  1, 'SendEL2', 'EEG&Text', 'Voutput', 'EEG' );
+    EEG  = pop_binlister( EEG , 'BDF', [txtdir filesep 'binlist.txt'], 'IndexEL',  1, 'SendEL2', 'EEG', 'Voutput', 'EEG' );
+    [ALLEEG, EEG] = eeg_store(ALLEEG, EEG, CURRENTSET);
     [ALLEEG, EEG] = eeg_store(ALLEEG, EEG, CURRENTSET);
      
     % extract epochs
@@ -52,13 +51,14 @@ for s = subject_start : subject_end
     [ALLEEG, EEG] = eeg_store(ALLEEG, EEG, CURRENTSET);
 
     % export event list
-    EEG = pop_exporteegeventlist( EEG , 'Filename', [txtdir subject '_bins.txt'] );
+    EEG = pop_exporteegeventlist( EEG , 'Filename', [txtdir filesep subject '_bins.txt'] );
         
     % make epochs with peak activity within window
     EEG  = pop_artextval( EEG , 'Channel',  [], 'Flag',  1, 'Threshold', [ -75 75], 'Twindow', [epoch_baseline epoch_end] );
     EEG  = pop_artmwppth( EEG , 'Channel',  [], 'Flag',  1, 'Threshold',  100, 'Twindow', ...
         [epoch_baseline epoch_end], 'Windowsize',  200, 'Windowstep',  100 ); 
-    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET ,'savenew',[workdir [subject '_epoch_ar.set']],'gui','off');
+    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET ,'savenew',[workdir filesep subject '_epoch_ar.set']);
+    [EEG] = pop_saveset(EEG, [workdir filesep subject '_epoch_ar.set']);
 
 end
 
