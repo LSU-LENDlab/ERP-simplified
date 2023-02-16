@@ -36,6 +36,15 @@ for s = subject_start : subject_end
     % average ERPs
     ERP = pop_averager( ALLEEG , 'Criterion', 'good', 'DSindex',1, 'ExcludeBoundary', 'on', 'SEM', 'on' );
     ERP = pop_savemyerp(ERP, 'erpname', subject, 'filename', [subject '.erp'], 'filepath', erpdir, 'Warning', 'on'); 
+end
+
+
+for s = subject_start : subject_end
+    subject = subjects{s};
+
+    % establish data objects
+   [ALLEEG, EEG, CURRENTSET, ALLCOM] = eeglab;
+    eeglab('redraw');
 
     % filter ERPs
     ERP = pop_loaderp( 'filename', [subject '.erp'], 'filepath', [erpdir filesep] );
