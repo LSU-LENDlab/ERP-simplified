@@ -38,10 +38,7 @@ for s = subject_start : subject_end
     ERP = pop_savemyerp(ERP, 'erpname', subject, 'filename', [subject '.erp'], 'filepath', erpdir, 'Warning', 'on'); 
 end
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 52bd568 (update)
 for s = subject_start : subject_end
     subject = subjects{s};
 
