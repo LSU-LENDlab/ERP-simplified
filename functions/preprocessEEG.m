@@ -50,36 +50,41 @@ for s = subject_start : subject_end
     EEG = pop_loadbv(rawdir, [subject '.vhdr']);
     [ALLEEG, EEG, CURRENTSET] = pop_newset( ALLEEG, EEG, 0,'setname',subject,'gui','off'); 
     EEG = eeg_checkset( EEG );
-
-    % remove extraneous data 
-    EEG = erplab_deleteTimeSegments(EEG, 0, 3000, 3000);
-   [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_time'],'gui','off');
-    EEG = eeg_checkset( EEG );
     
     % filter data based on highpass and lowpass filters
     EEG = pop_eegfilt ( EEG, highpass, lowpass, [], [0], 0, 0, 'fir1', 0);
-    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_time_fl'],'gui','off'); 
+    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_fl'],'gui','off'); 
     EEG = eeg_checkset( EEG );
     
     % rereferenece raw data
     EEG = pop_reref ( EEG, []);
-    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_time_fl_rr'],'gui','off');
+    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_fl_rr'],'gui','off');
+    EEG = eeg_checkset( EEG );
+
+    % remove extraneous data 
+    EEG = erplab_deleteTimeSegments(EEG, 0, 3000, 3000);
+   [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_fl_rr_time'],'gui','off');
     EEG = eeg_checkset( EEG );
 
     % save new dataset
-    EEG = pop_saveset (EEG, [subject '_time_fl_rr'], workdir);
+    EEG = pop_saveset (EEG, [subject '_fl_rr_time'], workdir);
+
+end
+
+for s = subject_start : subject_end
+    subject = subjects{s};
 
     % load and identify bad channels to reject
-    EEG = pop_loadset([subject '_fl_rr.set'],workdir);
-   [EEG, EEG.reject.indelec] = pop_rejchan(EEG,'elec',[1:EEG.nbchan],'threshold',5,'norm', 'on');
+    EEG = pop_loadset([subject '_fl_rr_time.set'],workdir);
+   [EEG, EEG2.reject.indelec] = pop_rejchan(EEG,'elec',[1:EEG.nbchan],'threshold',5,'norm', 'on');
      
    % interpolate bad electrodes
     EEG = eeg_interp(EEG,EEG2.reject.indelec);
    
    % create new set
-   [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_time_fl_rr_interp'],'gui','off');
+   [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_fl_rr_time_interp'],'gui','off');
     EEG = eeg_checkset( EEG );
 
     % save preprocessed dataset
-    EEG = pop_saveset( EEG, [subject '_time_fl_rr_interp'], workdir);
+    EEG = pop_saveset( EEG, [subject '_fl_rr_time_interp'], workdir);
 end

@@ -34,9 +34,13 @@ EEG = pop_loadset ([subject '_ICA.set'], workdir);
 % run MARA and identify components
 [ALLEEG, EEG, EEG.reject.gcompreject ] = processMARA (ALLEEG, EEG,CURRENTSET) ;
 
-% rejects components above 70% probability
-EEG.reject.gcompreject = zeros(size(EEG.reject.gcompreject)); 
-EEG.reject.gcompreject(EEG.reject.MARAinfo.posterior_artefactprob > 0.70) = 1;
+% remove components 0.5 probability or greater that fall within the first
+% 10 components marked for removal
+
+remove_components = EEG.reject.MARAinfo.posterior_artefactprob(1:10) > 0.5;
+EEG = pop_subcomp( EEG, find(remove_components), 0);
+[ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_ICA_clean'],'gui','off');
+EEG = eeg_checkset( EEG );
 
 % save new dataset
 EEG = eeg_checkset( EEG ) ;

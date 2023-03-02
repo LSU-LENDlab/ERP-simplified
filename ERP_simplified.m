@@ -65,7 +65,7 @@ epoch_end = 800.00; % can be changed as needed
 
 %% Step 3: Establish subject list
 
-[d,s,r] = xlsread (' '); % Type the name of the .xlsx file within the ''(quotes). Note: it must be in the current directory.
+[d,s,r] = xlsread(' '); % Type the name of the .xlsx file within the ''(quotes). Note: it must be in the current directory.
 subjects = r;
 numsubjects = (length(s));
 
@@ -95,8 +95,9 @@ maraEEG(subject_start, subject_end, subjects, workdir)
 %% Step 7: Creating a binlist 
 
 %{
-A binlist is a .txt file that you will put in your 'txtdir'. This file is
-what MATLAB uses to identify where ERPs will be extracted (i.e. the
+A binlist is a .txt file that you will put in your 'txtdir'. The following 
+steps of ERP-simplified cannot be run without a binlist.
+This file is what MATLAB uses to identify where ERPs will be extracted (i.e. the
 stimulus locations indetified by trigger codes). 
 Let's say I have two visual stimuli presented in an experiment and I want 
 to extract the ERP from these stimuli. The trigger codes are 

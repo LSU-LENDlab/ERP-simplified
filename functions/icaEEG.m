@@ -30,7 +30,7 @@ for s=subject_start : subject_end
     eeglab('redraw');
 
     % load preprocessed set
-    EEG = pop_loadset ([subject '_time_fl_rr_interp.set'], workdir);
+    EEG = pop_loadset ([subject '_fl_rr_time_interp.set'], workdir);
     [ALLEEG, EEG, CURRENTSET] = eeg_store( ALLEEG, EEG, 0 );
     
     % run ICA
