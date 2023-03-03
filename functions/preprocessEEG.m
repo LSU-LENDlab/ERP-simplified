@@ -1,37 +1,16 @@
 %% Function: preprocessEEG(subject_start, subject_end, subjects, workdir, rawdir, highpass, lowpass)
 % Author: Will Decker
 % Usage: preproccess raw EEG data
+% Inputs 
+    % subject_start: subject file to start loading (the position of the file name in subject_names
+    % subject_end: last subject file to load (the position of the file name in subject_names
+    % subjects: a str list of subject names to be loaded into the EEG object
+    % workdir: path to working directory
+    % rawdir: path to raw data
+    % highpass: highpass filter (in Hz)
+    % lowpass: lowpass filter (in Hz)
 
-%% Inputs 
 
-%{ 
-    subject_start: subject file to start loading (the position of the file name in subject_names
-     
-    subject_end: last subject file to load (the position of the file name in subject_names
-    
-    subjects: a str list of subject names to be loaded into the EEG object
-    
-    workdir: path to working directory
-
-    rawdir: path to raw data
-
-    highpass: highpass filter (in Hz)
-
-    lowpass: lowpass filter (in Hz)
-
-%}
-
-%% Notes:
-
-%{
-Notes: This function requires that a subject list be loaded with the string
-names of all the files. The format of this must be .xlsx. An example of how
-to correctly load the subject list and how to use this function is below.
-
-[d,s,r] = xlsread ('.xlsx'); % Type the name of the .xlsx file within the ''(quotes).
-subjects = r;
-
-%}
 %%
 
 function [EEG, com] = preprocessEEG(subject_start, subject_end, subjects, workdir, rawdir, highpass,lowpass)

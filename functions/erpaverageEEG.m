@@ -1,22 +1,14 @@
 %% Function: erpaverageEEG(subject_start, subject_end, subjects, workdir, erpdir)
 % Author: Will Decker
 % Usage: average ERPs across participants
+% Inputs 
+    % subject_start: subject file to start loading (the position of the file name in subject_names
+    % subject_end: last subject file to load (the position of the file name in subject_names
+    % subjects: a str list of subject names to be loaded into the EEG object
+    % workdir: path to working directory
+    % erpdir: path to ERP directory
 
-%% Inputs 
-
-%{ 
-    subject_start: subject file to start loading (the position of the file name in subject_names
-     
-    subject_end: last subject file to load (the position of the file name in subject_names
-    
-    subjects: a str list of subject names to be loaded into the EEG object
-    
-    workdir: path to working directory
-
-    erpdir: path to ERP directory
-
-%}
-
+%%
 function [EEG, com] = erpaverageEEG(subject_start, subject_end, subjects, workdir, erpdir)
 
 EEG = [];

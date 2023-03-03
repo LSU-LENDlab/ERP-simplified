@@ -1,19 +1,12 @@
 %% Function: icaEEG(subject_start, subject_end, subjects, workdir)
 % Author: Will Decker
 % Usage: running ICA on preprocessed data
+% Inputs:
+    % subject_start: subject file to start loading (the position of the file name in subject_names
+    % subject_end: last subject file to load (the position of the file name in subject_names
+    % subjects: a str list of subject names to be loaded into the EEG object
+    % workdir: path to working directory
 
-%% Inputs 
-
-%{ 
-    subject_start: subject file to start loading (the position of the file name in subject_names
-     
-    subject_end: last subject file to load (the position of the file name in subject_names
-    
-    subjects: a str list of subject names to be loaded into the EEG object
-    
-    workdir: path to working directory
-
-%}
 
 %%
 

@@ -1,26 +1,16 @@
 %% Function: erpanalysisEEG(subject_start, subject_end, subjects, workdir, txtdir, epoch_baseline, epoch_end)
 % Author: Will Decker
 % Usage: epoch data
+% Inputs 
+    % subject_start: subject file to start loading (the position of the file name in subject_names     
+    % subject_end: last subject file to load (the position of the file name in subject_names
+    % subjects: a str list of subject names to be loaded into the EEG object
+    % workdir: path to working directory
+    % txtdir: path to binlists
+    % epoch_baselime: time (in ms) to start epoch
+    % epoch_end: time (in ms) to end epoch
 
-%% Inputs 
-
-%{ 
-    subject_start: subject file to start loading (the position of the file name in subject_names
-     
-    subject_end: last subject file to load (the position of the file name in subject_names
-    
-    subjects: a str list of subject names to be loaded into the EEG object
-    
-    workdir: path to working directory
-
-    txtdir: path to binlists
-
-    epoch_baselime: time (in ms) to start epoch
-
-    epoch_end: time (in ms) to end epoch
-
-%}
-
+%%
 function [EEG, com] = erpanalysisEEG(subject_start, subject_end, subjects, workdir, txtdir, epoch_baseline, epoch_end)
 
 EEG = [];
