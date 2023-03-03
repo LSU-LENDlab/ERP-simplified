@@ -90,7 +90,7 @@ icaEEG(subject_start, subject_end, subjects, workdir)
 % to read more about the function 'maraEEG' highlight it and press cmd +
 % shift + D (on Mac)
 
-threshold = 0.5; % can be changed as needed
+threshold = 0.5; % can be changed as need
 
 maraEEG(subject_start, subject_end, subjects, workdir)
 
