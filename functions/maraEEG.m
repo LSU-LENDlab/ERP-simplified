@@ -12,10 +12,12 @@
     subjects: a str list of subject names to be loaded into the EEG object
     
     workdir: path to working directory
+    
+    threshold: probabilty that an artifact is a true artifact
 
 %}
 
-function [EEG, com] = maraEEG(subject_start, subject_end, subjects, workdir)
+function [EEG, com] = maraEEG(subject_start, subject_end, subjects, workdir, threshold)
 
 EEG = [];
 com = ' ';
@@ -34,10 +36,8 @@ EEG = pop_loadset ([subject '_ICA.set'], workdir);
 % run MARA and identify components
 [ALLEEG, EEG, EEG.reject.gcompreject ] = processMARA (ALLEEG, EEG,CURRENTSET) ;
 
-% remove components 0.5 probability or greater that fall within the first
-% 10 components marked for removal
-
-remove_components = EEG.reject.MARAinfo.posterior_artefactprob(1:10) > 0.5;
+% remove components greater than or equal to probability threshold
+remove_components = EEG.reject.MARAinfo.posterior_artefactprob(1:10) >= threshold;
 EEG = pop_subcomp( EEG, find(remove_components), 0);
 [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_ICA_clean'],'gui','off');
 EEG = eeg_checkset( EEG );

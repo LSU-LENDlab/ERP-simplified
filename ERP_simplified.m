@@ -92,7 +92,7 @@ icaEEG(subject_start, subject_end, subjects, workdir)
 
 threshold = 0.5; % can be changed as need
 
-maraEEG(subject_start, subject_end, subjects, workdir)
+maraEEG(subject_start, subject_end, subjects, workdir, threshold)
 
 %% Step 7: Creating a binlist 
 
