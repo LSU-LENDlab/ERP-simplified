@@ -156,7 +156,7 @@ NOTE: there are additional steps that must be taken to statistically analyze you
 
 For now, that is all! Thank you for using ERP-Simplified!
 
-**_Citations_**
+## **_Citations_**
 
 Delorme A & Makeig S (2004) EEGLAB: an open-source toolbox for analysis of single-trial EEG dynamics, Journal of Neuroscience Methods 134:9-21.
 
