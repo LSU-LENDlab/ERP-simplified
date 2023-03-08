@@ -5,14 +5,12 @@
 %% Introduction
 
 %{
-This script is a simplified version of 'N400_ERP_script.m'. It takes you
-through the standard steps of preprocessing, bad channel removal, ICA,
-artifact detection, ERP analysis and ERP average. However, what makes this
-code simpler, is that each compoenent of the pipeline has been condensed
-down into one function. All functions are located in the 'functions' folder. To use
-these, download the folder and add it to your MATLAB path. 
+The following script and functions combine and completely automate the standard analysis steps for preprocessing raw EEG data and extracting ERPs. 
+This pipeline makes use of EEGLAB, ERPLAB and MARA--open source software for analyzing EEG data. 
+Additionally, this pipeline is specified for raw BrainVision files but can be modified to accomodate other file types. 
+Please review this document for a detailed description for ERP-Simplified implementation.
 
-Note: the naming scheme is adapted from 'N400_ERP_script.m'
+ERP-Simplified is important because it removes subjectivity among researchers during important analysis steps when working with EEG.
 %}
 
 %% Overview
@@ -36,22 +34,11 @@ eeglab;
 
 %% Step 1: Establish directories
 
-%{ 
-NOTES:
--don't forget to set a path in the HOME tab of MATLAB
--Directories are set variables that identify locations of files/folders
-that MATLAB either pulls data from or sends new data to.
--You will need to associate a file to each directory variable. Using these
-directories is helpful and will make your data organized and easily
-accessible as it is run through each step of this process.
-%}
 
-% Directories
-% Type in the locations of these directories within the ''(quotes)
-rawdir = ' '; % The 'rawdir' is where MATLAB will pull raw EEG data from
-workdir = ' '; % The 'workdir' is an active directory that MATLAB will send all working data to
-txtdir = ' '; % 'txtdir' is for textfiles and binlists
-erpdir = ' '; % The 'erpdir' is where ERPs will be sent
+rawdir = rawdirEEG % The 'rawdir' is where MATLAB will pull raw EEG data from
+workdir = workdirEEG % The 'workdir' is an active directory that MATLAB will send all working data to
+txtdir = txtdirEEG % 'txtdir' is for textfiles and binlists
+erpdir = erpdirEEG % The 'erpdir' is where ERPs will be sent
 
 %% Step 2: Establish parameters
 
@@ -65,28 +52,30 @@ epoch_end = 800.00; % can be changed as needed
 
 %% Step 3: Establish subject list
 
-[d,s,r] = xlsread(' '); % Type the name of the .xlsx file within the ''(quotes). Note: it must be in the current directory.
+[d,s,r] = xlsread(txtdir, "subjects.xlsx");
 subjects = r;
 numsubjects = (length(s));
+
+%% Step 4: Choosing which subject(s) to run
 
 % Subjects to runx
 subject_start = 1; % subject in position 'x' in subjects variable
 subject_end = 1; % subject in position 'x' in subjects variable
 
 
-%% Step 4: Data preprocessing
+%% Step 5: Data preprocessing
 % to read more about the function 'preprocessEEG' highlight it and press
 % cmd + shift + D (on Mac)
 
 preprocessEEG(subject_start, subject_end, subjects, workdir, rawdir, highpass, lowpass)
 
-%% Step 5: ICA
+%% Step 6: ICA
 % to read more about the function 'icaEEG' highlight it and press cmd +
 % shift + D (on Mac)
 
 icaEEG(subject_start, subject_end, subjects, workdir)
 
-%% Step 6: Artifact Removal
+%% Step 7: Artifact Removal
 % to read more about the function 'maraEEG' highlight it and press cmd +
 % shift + D (on Mac)
 
@@ -94,7 +83,7 @@ threshold = 0.5; % can be changed as need
 
 maraEEG(subject_start, subject_end, subjects, workdir, threshold)
 
-%% Step 7: Creating a binlist 
+%% Step 8: Creating a binlist 
 
 %{
 A binlist is a .txt file that you will put in your 'txtdir'. The following 
@@ -113,7 +102,7 @@ Example:        bin 1
                 .{102}
 %}
            
-%% Step 8: ERP analysis
+%% Step 9: ERP analysis
 % to read more about the function 'erpanalysisEEG' highlight it and press
 % cmd + shift + D (on Mac)
 
@@ -135,7 +124,7 @@ Open terminal and cd into your txtdir where the binlists have been saved
 In terminal type sh edit_bin_list.sh
 
 %} 
-%% Step 9: Average ERPs
+%% Step 10: Average ERPs
 % to read more about the function 'erpaverageEEG' highlight it and press
 % cmd + shift + D (on Mac)
 
