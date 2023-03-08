@@ -1,6 +1,6 @@
 %% Function: txtdirEEG()
 % Author: Will Decker
-% Usage: select raw directory
+% Usage: select text directory
 % Inputs 
     % none
 

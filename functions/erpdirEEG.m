@@ -1,6 +1,6 @@
 %% Function: erpdirEEG()
 % Author: Will Decker
-% Usage: select raw directory
+% Usage: select ERP directory
 % Inputs 
     % none
 
