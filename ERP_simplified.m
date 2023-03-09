@@ -52,7 +52,7 @@ epoch_end = 800.00; % can be changed as needed
 
 %% Step 3: Establish subject list
 
-[d,s,r] = xlsread([txtdir filesep 'subjects.xlsx']);
+[d,s,r] = xlsread([txtdir filesep 'subjects.xlsx']); % the 'subjects.xlsx' MUST be in you text directory
 subjects = r;
 numsubjects = (length(s));
 
