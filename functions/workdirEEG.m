@@ -7,7 +7,7 @@
 %%
 function workdir = workdirEEG
 
-uiwait(msgbox('Select the folder working data analysis. This will serve as your raw directory','modal'));
+uiwait(msgbox('Select the folder for your working data analysis. This will serve as your working directory','modal'));
 workdir = uigetdir;
 
 if workdir == 0
