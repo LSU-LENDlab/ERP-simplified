@@ -52,13 +52,13 @@ epoch_end = 800.00; % can be changed as needed
 
 %% Step 3: Establish subject list
 
-[d,s,r] = xlsread(txtdir, "subjects.xlsx");
+[d,s,r] = xlsread([txtdir filesep 'subjects.xlsx']);
 subjects = r;
 numsubjects = (length(s));
 
 %% Step 4: Choosing which subject(s) to run
 
-% Subjects to runx
+% Subjects to run
 subject_start = 1; % subject in position 'x' in subjects variable
 subject_end = 1; % subject in position 'x' in subjects variable
 
