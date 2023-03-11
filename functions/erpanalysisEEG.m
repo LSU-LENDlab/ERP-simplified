@@ -24,7 +24,7 @@ for s = subject_start : subject_end
     eeglab('redraw');
 
     % Create eventlist, apply binlist, extract epochs
-    EEG = pop_loadset([subject '_ICA_clean.set'],workdir);
+    EEG = pop_loadset([subject '_MARA.set'],workdir);
     
     % create eventlist 
     EEG  = pop_creabasiceventlist( EEG , 'AlphanumericCleaning', 'on', 'BoundaryNumeric', { -99 }, 'BoundaryString', { 'boundary' }, 'Eventlist', [txtdir filesep subject '.txt'] ); 

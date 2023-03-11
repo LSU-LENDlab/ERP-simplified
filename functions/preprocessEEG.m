@@ -32,17 +32,17 @@ for s = subject_start : subject_end
     
     % filter data based on highpass and lowpass filters
     EEG = pop_eegfilt ( EEG, highpass, lowpass, [], [0], 0, 0, 'fir1', 0);
-    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_fl'],'gui','off'); 
+    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_filter'],'gui','off'); 
     EEG = eeg_checkset( EEG );
     
     % rereferenece raw data
     EEG = pop_reref ( EEG, []);
-    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_fl_rr'],'gui','off');
+    [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_filter_reref'],'gui','off');
     EEG = eeg_checkset( EEG );
 
     % remove extraneous data 
     EEG = erplab_deleteTimeSegments(EEG, 0, 3000, 3000);
-   [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_fl_rr_time'],'gui','off');
+   [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_filter_reref_timedelete'],'gui','off');
     EEG = eeg_checkset( EEG );
 
     % save new dataset
@@ -61,9 +61,9 @@ for s = subject_start : subject_end
     EEG = eeg_interp(EEG,EEG2.reject.indelec);
    
    % create new set
-   [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_fl_rr_time_interp'],'gui','off');
+   [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_filter_reref_timedelete_interp'],'gui','off');
     EEG = eeg_checkset( EEG );
 
     % save preprocessed dataset
-    EEG = pop_saveset( EEG, [subject '_fl_rr_time_interp'], workdir);
+    EEG = pop_saveset( EEG, [subject '_filter_reref_timedelete_interp'], workdir);
 end

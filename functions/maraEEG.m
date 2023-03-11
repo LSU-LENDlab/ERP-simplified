@@ -32,12 +32,12 @@ EEG = pop_loadset ([subject '_ICA.set'], workdir);
 % remove components greater than or equal to probability threshold
 remove_components = EEG.reject.MARAinfo.posterior_artefactprob(1:10) >= threshold;
 EEG = pop_subcomp( EEG, find(remove_components), 0);
-[ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_ICA_clean'],'gui','off');
+[ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, CURRENTSET,'setname',[subject '_MARA'],'gui','off');
 EEG = eeg_checkset( EEG );
 
 % save new dataset
 EEG = eeg_checkset( EEG ) ;
 [ALLEEG, EEG, CURRENTSET] = eeg_store(ALLEEG, EEG, CURRENTSET ) ;
-EEG = pop_saveset( EEG, [subject '_ICA_clean'], workdir);
+EEG = pop_saveset( EEG, [subject '_MARA'], workdir);
 
 end
