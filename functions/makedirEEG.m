@@ -1,6 +1,6 @@
 %% Function: makdirEEG()
 % Author: Will Decker
-% Usage: create directories needed for ERP
+% Usage: create directories needed for ERP-Simplified
 % Inputs 
     % none
 
@@ -32,7 +32,7 @@ disp(['erpdir: ' erpdir]);
 %% Assign output to variables
 
 if nargout > 0
-    
+
     varargout{1} = rawdir;
     varargout{2} = workdir;
     varargout{3} = txtdir;
