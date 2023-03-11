@@ -30,6 +30,8 @@ To begin working with ERP-simplified:
 4. Read through the entire ERP_simplified.m script. This will help you get a sense of what you are about to complete.
 5. Open each file within the functions folder and read through their parameters/inputs to better understand what each function does when implemented.
 
+Additionally, as you progress through each step, the files are saved according to their step in the process. The purpose of this is to provide a safeguard as ERP-Simplified is constantly pulling and pushing new data. You can expand functions to learn more about where you are in each step and the naming scheme that is currently being implemented. 
+
 ## Step 1: Establish directories
 
 In the case of ERP-Simplified, directories are essentially folders that contain data. ERP-Simplified makes use of four different directories that you will need to create:
