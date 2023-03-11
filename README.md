@@ -27,8 +27,8 @@ To begin working with ERP-simplified:
 1. Download the [functions](https://github.com/w-decker/ERP-simplified/blob/main/functions) and add it to your MATLAB path.
 2. Open [ERP_simplified.m](https://github.com/w-decker/ERP-simplified/blob/main/ERP_simplified.m)
 3. Ensure that you have installed the following: Matlab Statistics Toolbox, Optimization Toolbox and the Signal Processing Toolbox
-4. Read through the entire [ERP_simplified.m](https://github.com/w-decker/ERP-simplified/blob/main/ERP_simplified.m) script. This will help you get a sense of what you are about to complete.
-5. Open each file within the [functions](https://github.com/w-decker/ERP-simplified/blob/main/functions) folder and read through their parameters/inputs to better understand what each function does when implemented.
+4. Read through the entire ERP_simplified.m script. This will help you get a sense of what you are about to complete.
+5. Open each file within the functions folder and read through their parameters/inputs to better understand what each function does when implemented.
 
 ## Step 1: Establish directories
 
