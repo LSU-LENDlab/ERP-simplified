@@ -26,14 +26,10 @@ ERP-Simplified is important because it removes subjectivity among researchers du
 % Step 9: Average ERPs
 
 %%
-
 clear
 eeglab;
 
-%%
-
 %% Step 1: Establish directories
-
 
 rawdir = rawdirEEG % The 'rawdir' is where MATLAB will pull raw EEG data from
 workdir = workdirEEG % The 'workdir' is an active directory that MATLAB will send all working data to
@@ -61,7 +57,6 @@ numsubjects = (length(s));
 % Subjects to run
 subject_start = 1; % subject in position 'x' in subjects variable
 subject_end = 1; % subject in position 'x' in subjects variable
-
 
 %% Step 5: Data preprocessing
 % to read more about the function 'preprocessEEG' highlight it and press
