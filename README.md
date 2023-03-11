@@ -51,6 +51,12 @@ If you have already reviewed the functions used in this pipeline you will recogn
 
 To execute this step, ensure that the Step 1 cell is highlighted by clicking anywhere within the cell and then click "Run Section" or cmd+enter. You will then be prompted to assign a folder to each directory variable.
 
+#### Or
+
+As stated above, ERP-Simplified works using a series of directories that is pulls and pushes data to. In the second iteration of Step 1, ERP-Simplified simply creates the required folders automatically in MATLAB's current working directory. If you wish to see MATLAB's current working directory simply type `pwd` in the command window. The output that you are shown from that is where the required folders will be created. The only work that you must do is add raw EEG data into the raw directory. Other than that, this is a fast and quick way to create the necessary directories to get started with ERP-Simplified.
+
+To execute this step, ensure that the Step 1 cell is highlighted by clicking anywhere within the cell and then click "Run Section" or cmd+enter. You will then be prompted to assign a folder to each directory variable.
+
 ## Step 2: Establish parameters
 
 When analyzing time-series data, such as EEG data, you will need to filter the data using a highpass and lowpass filter. These values have already been inlcuded in the ERP_simplified.m script and are standard but you may change them at your own discression.
