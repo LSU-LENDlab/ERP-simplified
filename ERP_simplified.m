@@ -18,23 +18,28 @@ ERP-Simplified is important because it removes subjectivity among researchers du
 % Step 1: Establish directories
 % Step 2: Establish parameters
 % Step 3: Establish subject list
-% Step 4: Data preprocessing
-% Step 5: ICA
-% Step 6: Artifact removal
-% Step 7: Creating a binlist
-% Step 8: ERP analysis
-% Step 9: Average ERPs
+% Step 4: Choosing which subjects to run
+% Step 5: Data preprocessing
+% Step 6: ICA
+% Step 7: Artifact removal
+% Step 8: Creating a binlist
+% Step 9: ERP analysis
+% Step 10: Average ERPs
 
 %%
 clear
 eeglab;
 
-%% Step 1: Establish directories
+%% Step 1: Establish directories (option 1)
 
 rawdir = rawdirEEG % The 'rawdir' is where MATLAB will pull raw EEG data from
 workdir = workdirEEG % The 'workdir' is an active directory that MATLAB will send all working data to
 txtdir = txtdirEEG % 'txtdir' is for textfiles and binlists
 erpdir = erpdirEEG % The 'erpdir' is where ERPs will be sent
+
+%% Step 1: Establish directories (option 2)
+
+[rawdir, workdir, txtdir, erpdir] = makedirEEG; % creates necessary directories in MATLAB's current working directory
 
 %% Step 2: Establish parameters
 
@@ -74,7 +79,7 @@ icaEEG(subject_start, subject_end, subjects, workdir)
 % to read more about the function 'maraEEG' highlight it and press cmd +
 % shift + D (on Mac)
 
-threshold = 0.5; % can be changed as need
+threshold = 0.5; % can be changed as neededs
 
 maraEEG(subject_start, subject_end, subjects, workdir, threshold)
 

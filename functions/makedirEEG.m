@@ -8,8 +8,6 @@ function [rawdir, workdir, txtdir, erpdir] = makedirEEG
 
 curdir = pwd; % identify MATLAB's current directory
 
-%% Create directories
-
 rawdir = fullfile(curdir, 'rawdir');
 mkdir(rawdir); % make empty folder for raw data
 
@@ -38,8 +36,11 @@ if nargout > 0
     varargout{3} = txtdir;
     varargout{4} = erpdir;
 
-else
+    disp(["..."])
+    disp(["You have successfully created your directories."])
 
+else
+    disp(["..."])
     disp(["Error...please execute makedirEEG again."])
 
 end
