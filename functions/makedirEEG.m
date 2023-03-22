@@ -4,7 +4,7 @@
 % Inputs 
     % none
 
-function [rawdir, workdir, txtdir, erpdir] = makedirEEG
+function varargout = makedirEEG(  )
 
 curdir = pwd; % identify MATLAB's current directory
 
@@ -30,6 +30,11 @@ disp(['erpdir: ' erpdir]);
 %% Assign output to variables
 
 if nargout > 0
+
+disp(['rawdir: ' rawdir]);
+disp(['workdir: ' workdir]);
+disp(['txtdir: ' txtdir]);
+disp(['erpdir: ' erpdir]);
 
     varargout{1} = rawdir;
     varargout{2} = workdir;

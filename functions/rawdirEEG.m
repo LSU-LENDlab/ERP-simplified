@@ -8,6 +8,7 @@
 function rawdir = rawdirEEG
 
 uiwait(msgbox('Select the folder with your raw data. This will serve as your raw directory','modal'));
+
 rawdir = uigetdir;
 
 if rawdir == 0
@@ -19,3 +20,4 @@ else
     disp(['You have selected ', rawdir, ' as your raw directory'])
 
 end
+
