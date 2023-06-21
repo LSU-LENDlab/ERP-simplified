@@ -7,20 +7,20 @@ ERP-Simplified is important because it removes subjectivity among researchers du
 
 ## Table of Contents
 
-* Introduction
-* Step 1: Establish directories
-* Step 2: Establish parameters
-* Step 3: Establish subject list
-* Step 4: Choosing which subjects to run
-* Step 5: Data preprocessing
-* Step 6: ICA
-* Step 7: Artifact removal
-* Step 8: Creating a binlist
-* Step 9: ERP analysis
-* Step 10: Average ERPs
+* [Introduction](#introduction)
+* [Step 1: Establish directories](#step1)
+* [Step 2: Establish parameters](#step2)
+* [Step 3: Establish subject list](#step3)
+* [Step 4: Choosing which subjects to run](step4)
+* [Step 5: Data preprocessing](#step5)
+* [Step 6: ICA](#step6)
+* [Step 7: Artifact removal](#step7)
+* [Step 8: Creating a binlist](#step8)
+* [Step 9: ERP analysis](#step9)
+* [Step 10: Average ERPs](#step10)
 
 
-## Introduction
+## Introduction <a name="introduction"></a>
 
 To begin working with ERP-simplified:
 
@@ -32,7 +32,7 @@ To begin working with ERP-simplified:
 
 Additionally, as you progress through each step, the files are saved according to their step in the process. The purpose of this is to provide a safeguard as ERP-Simplified is constantly pulling and pushing new data. You can expand functions to learn more about where you are in each step and the naming scheme that is currently being implemented. 
 
-## Step 1: Establish directories
+## Step 1: Establish directories <a name="step1"></a>
 
 In the case of ERP-Simplified, directories are essentially folders that contain data. ERP-Simplified makes use of four different directories that you will need to create:
 
@@ -59,7 +59,7 @@ As stated above, ERP-Simplified works using a series of directories that is pull
 
 To execute this step, ensure that the Step 1 cell is highlighted by clicking anywhere within the cell and then click "Run Section" or cmd+enter.
 
-## Step 2: Establish parameters
+## Step 2: Establish parameters <a name="step2"></a>
 
 When analyzing time-series data, such as EEG data, you will need to filter the data using a highpass and lowpass filter. These values have already been inlcuded in the ERP_simplified.m script and are standard but you may change them at your own discression.
 
@@ -67,7 +67,7 @@ Additionally, you will need to epoch your data. This means that you are dividing
 
 To execute this step, ensure that the Step 2 cell is highlighted by clicking anywhere within the cell and then click "Run Section".
 
-## Step 3: Establish subject list
+## Step 3: Establish subject list <a name="step3"></a>
 
 ERP_simplified analyzes specific EEG files using a subject list or a list of file names to pull and run through the code. It does this with an Excel file.
 To properly do this, open Microsoft Excel and in the first column, type the names of each file without a file end. So you must only type, for example. 
@@ -80,13 +80,13 @@ Once you have completed the aforementioned step *save the excel files by the nam
 
 To execute this step, ensure that the Step 3 cell is highlighted by clicking anywhere within the cell and then click "Run Section".
 
-## Step 4: Choosing which subjects to run
+## Step 4: Choosing which subjects to run <a name="step4"></a>
 
 Navigate over to your MATLAB workspace and click on the cell named "s". This is your subject list. To choose which subject(s) to run, select the subjects and type in their position in the cell, "s". For example, if you wish to run eeg_006 and that subject is in position 5 in "s" (perhaps due to eeg_005 dropping out or some other reason) you will type the number "5" next to `subject_start`. If you only wish to run this subject, you will also type "5" next to `subject_end`. If you wish to run multiple subjects after eeg_006 (who is in position 5 in "s") simply look for that last subject that you wish to run and type their position next to `subject_end`. For example, if you want to run all of the subjects from eeg_006 to eeg_045, and eeg_045 is located in position 47 you would type "47" next to `subject_end` and the code will run all of the subjects starting in position 5 through the subject in position 47.
 
 To execute this step, ensure that the Step 4 cell is highlighted by clicking anywhere within the cell and then click "Run Section".
 
-## Step 5: Data preprocessing
+## Step 5: Data preprocessing <a name="step5"></a>
 
 The function `preprocessEEG` preprocesses your data based on some of the inputs that you have already given like which subjects to run or your highpass/lowpass filters. Overall, it conducts the following processes:
 
@@ -98,13 +98,13 @@ The function `preprocessEEG` preprocesses your data based on some of the inputs 
 
 To execute this step, ensure that the Step 5 cell is highlighted by clicking anywhere within the cell and then click "Run Section".
 
-## Step 6: ICA
+## Step 6: ICA <a name="step6"></a>
 
 The function `icaEEG` runs your data throguh an independant component analysis (ICA) this step may take longer than others.
 
 To execute this step, ensure that the Step 6 cell is highlighted by clicking anywhere within the cell and then click "Run Section".
 
-## Step 7: Artifact removal
+## Step 7: Artifact removal <a name="step7"></a>
 
 The function `maraEEG` utilizes [MARA](https://github.com/irenne/MARA.git) and requires additional toolboxes to function (see Introduction, step 3). This identifies artifiactes and removes them based on a probability threshold. As you may have noticed, there is an additional variable within this cell called `threshold`. This is value MARA uses to decide which artifacts to remove and which artifacts to keep. Additionally, `maraEEG` only removes artifacts from its first 10 artifacts. An example of how `maraEEG` works:
 
@@ -117,7 +117,7 @@ MARA will remove any components that are 50% likely or more to be a true artifac
 
 To execute this step, ensure that the Step 7 cell is highlighted by clicking anywhere within the cell and then click "Run Section".
 
-## Step 8: Creating a binlist
+## Step 8: Creating a binlist <a name="step8"></a>
 
 This step must be conducted manually.
 
@@ -138,7 +138,7 @@ Example:        bin 1
                 
 NOTE: this document must be saved in a .txt format and placed in the text directory.
 
-## Step 9: ERP analysis
+## Step 9: ERP analysis <a name="step9"></a>
 
 This step is the first component to ERP analysis and relies on the binlist, your epoch start and epoch end as well as other information. The following steps are implemented by `erpanalysisEEG`.
 
@@ -150,7 +150,7 @@ This step is the first component to ERP analysis and relies on the binlist, your
 
 To execute this step, ensure that the Step 9 cell is highlighted by clicking anywhere within the cell and then click "Run Section".
 
-## Step 10: Average ERPs
+## Step 10: Average ERPs <a name="step10"></a>
 
 This is the final step in the ERP-Simplified analysis.
 
